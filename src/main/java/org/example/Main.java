@@ -33,6 +33,10 @@ public class Main {
 
         // Ensuite on peut faire des operations sur les RDD
 
+        // Reduce
+        Double result = myRdd.reduce((value1, value2 ) -> value1 + value2);
+        System.out.println("The result is: " + result);
+
         sparkContext.close();
 
     }

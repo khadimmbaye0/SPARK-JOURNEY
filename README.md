@@ -39,3 +39,7 @@ sparkContext.parallelize(inputData);
 #### Spark est implementer en Scala beaucoup d'objets sont ecrits en scala. Le createur de spark a fourni une variete de classes pour combler la fausse entre Java et scala. ex JavaRDD
 
 #### javaRDD: C'est une representation Java d'un RDD ca nous permet de communiquer avec le RDD en utilisant java mais en dessous du capot, ce JavaRDD communique avec du scala RDD
+
+### Operation reduce sur RDD
+    reduce est une action sur un RDD qui sert à :
+    combiner tous les éléments du RDD pour obtenir une seule valeur
