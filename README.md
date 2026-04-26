@@ -43,3 +43,15 @@ sparkContext.parallelize(inputData);
 ### Operation reduce sur RDD
     reduce est une action sur un RDD qui sert à :
     combiner tous les éléments du RDD pour obtenir une seule valeur
+    exemple: function = value1 + value2
+
+### Mapping and Outputting
+    L'operation map nous permet de transformer la structure du RDD d'une forme a une autre
+    exemple: function = sqrt(value). Cela entraine la creation d'un nouveau RDD.
+    Un RDD est immuable, Lorsque c'est creer, ca ne peut plus etre modifier, c'est pour ca que les transformations creer de nouveaux RDDs
+
+### Outputting to the console
+    On doit penser a comment montrer la sortie. En se posant des questions, notamment sur notre architecture, si on a un cluster (ou on aura pas de terminal) ou autre.
+    La maniere de faire la plus courrante est d'ecrire la sortie sur un fichier. Si c'est un grand Dataset qui peut meme pas se tenir sur un fichier java en memoire, on songera a ecrire sur disque, en utilisant HDFS.
+    Dans un objet de type JavaRDD, on a une methode foreach qui prend en entree une fonction et cette fonction sera applique a chaque element.
+    La fonction ne retournera jamais rien (void)
