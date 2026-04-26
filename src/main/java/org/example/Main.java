@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import scala.Tuple2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,16 @@ public class Main {
         JavaRDD<Integer> sqrtRDDMaped = myRdd2.map( value -> value = 1);
         Integer count = sqrtRDDMaped.reduce((value1, value2) -> value1 + value2);
         System.out.println("Count: " + count);
+
+        // Tuples
+        // ca pourrai etre une solution mais trop de code c'est la ou les tuples entrent en jeu.
+        JavaRDD<IntegerWithSquare> sansTupleRDD = myRdd2.map(value -> new IntegerWithSquare(value));
+
+        // Implementation avec des tuples les tuples vont jusqu'a 22
+        JavaRDD<Tuple2<Integer, Double>> avecTupleRDD = myRdd2.map(value -> new Tuple2<>(value, Math.sqrt(value)));
+
+        // Definition d'un tuple en java
+        Tuple2<Integer, Double> myValue = new Tuple2<>(2, 3.0);
 
         sparkContext.close();
 

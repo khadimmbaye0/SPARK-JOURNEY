@@ -55,3 +55,7 @@ sparkContext.parallelize(inputData);
     La maniere de faire la plus courrante est d'ecrire la sortie sur un fichier. Si c'est un grand Dataset qui peut meme pas se tenir sur un fichier java en memoire, on songera a ecrire sur disque, en utilisant HDFS.
     Dans un objet de type JavaRDD, on a une methode foreach qui prend en entree une fonction et cette fonction sera applique a chaque element.
     La fonction ne retournera jamais rien (void)
+
+### Tuples
+    Motivations: Dans le code precedent, nous avons calculer les racines carres, separemment. On veut avoir la correspondance nbr -> racine_carre(nbr).
+    Un RDD peut stocker n'importe quel type de donnee meme des objets java.
