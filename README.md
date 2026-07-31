@@ -1,4 +1,33 @@
 # Introduction a Spark
+
+# Dependances avec lesquels on va travailler:
+
+```xml
+<dependencies>
+    <!-- Source: https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_2.13</artifactId>
+        <version>4.1.1</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- Source: https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_2.13</artifactId>
+        <version>4.1.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- Source: https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs -->
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-hdfs</artifactId>
+        <version>3.5.0</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
 ### On peut facilement transformer les donnees d'entrees en une structure RDD
 
 ```java
@@ -38,7 +67,7 @@ sparkContext.parallelize(inputData);
 
 #### Spark est implementer en Scala beaucoup d'objets sont ecrits en scala. Le createur de spark a fourni une variete de classes pour combler la fausse entre Java et scala. ex JavaRDD
 
-#### javaRDD: C'est une representation Java d'un RDD ca nous permet de communiquer avec le RDD en utilisant java mais en dessous du capot, ce JavaRDD communique avec du scala RDD
+#### javaRDD : C'est une representation Java d'un RDD ca nous permet de communiquer avec le RDD en utilisant java mais en dessous du capot, ce JavaRDD communique avec du scala RDD
 
 ### Operation reduce sur RDD
     reduce est une action sur un RDD qui sert à :
@@ -57,5 +86,37 @@ sparkContext.parallelize(inputData);
     La fonction ne retournera jamais rien (void)
 
 ### Tuples
+    Les tuples sont specifique a scala
+    Les tuples sont des collections de donnees
+    Les tuples sont immuable
     Motivations: Dans le code precedent, nous avons calculer les racines carres, separemment. On veut avoir la correspondance nbr -> racine_carre(nbr).
     Un RDD peut stocker n'importe quel type de donnee meme des objets java.
+    code:
+```java
+// Definition d'un tuple java, mais il faudra au préalable importer le package :
+import scala.Tuple2; // Les tuples vont jusqu'à 22.
+
+Tuple2<Integer, Double> myValue = new Tuple2<>(2, 3.0);
+```
+```scala
+// Definition d'un Tuple en scala
+val my_value = (2, 3.0)
+```
+*L'utilisation des tuples a un faible cout, car c'est un type scala donc pour l'utiliser, on est obligé de passer par une surcouche d'adaptation pour pouvoir l'utiliser avec JAVA*
+
+---
+
+# PairRDDs
+
+    Cela va nous permettre de faire du stockage Key/Value et grace a ca on aura des fonctions supplementaires.
+
+# Extra Méthodes avec les pairRDDs:
+## Group By Key
+![img1](assets/img.png)
+![img1](assets/img_1.png)
+
+    groupykey -- fait une transformation
+
+## Reduce By Key
+![img1](assets/img_2.png)
+![img1](assets/img_3.png)
